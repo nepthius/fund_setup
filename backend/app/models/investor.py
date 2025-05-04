@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, String, ForeignKey, Boolean, Float, Date, Text
 from app.db.base_class import Base
 
 class Investor(Base):
@@ -8,3 +8,9 @@ class Investor(Base):
     state = Column(String, nullable=False)
     email = Column(String)
     fund_name = Column(String, ForeignKey("funds.name"), nullable=False)
+    accredited = Column(Boolean, default=False)
+    kyc_status = Column(String, default="pending")  # pending, verified, failed
+    subscription_status = Column(String, default="not_started")  # not_started, in_progress, signed
+    investment_amount = Column(Float, nullable=True)
+    date_committed = Column(Date, nullable=True)
+    notes = Column(Text, nullable=True)
