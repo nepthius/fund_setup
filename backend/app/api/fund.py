@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 from app.schemas.fund import FundCreate, FundOut
 from app.services.fund import create_fund, get_fund, generate_ppm, get_funds, generate_lpa, generate_sub, generate_form_d_preview
 from app.db.session import get_db
+from app.services.blue_sky import generate_blue_sky_state_summary
 from fastapi.responses import PlainTextResponse
 
 router = APIRouter()
@@ -47,3 +48,7 @@ def generate_sub_doc(fund_name: str, db: Session = Depends(get_db)):
 def generate_form_d_doc(fund_name: str, db: Session = Depends(get_db)):
     fund = get_fund(db,fund_name)
     return generate_form_d_preview(fund)
+
+@router.get("/funds/{fund_name}/blue_sky_summary")
+def blue_sky_summary(fund_name: str, db: Session = Depends(get_db)):
+    return generate_blue_sky_state_summary(fund_name, db)
