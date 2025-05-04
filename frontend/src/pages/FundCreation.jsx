@@ -64,7 +64,7 @@ export default function FundWizard() {
   
         <div className="fund-form">
 
-        {/* Fund Details */}
+        {/* Fund Details cooooool*/}
         <div className="fund-section">
             <h4>Fund Details</h4>
             <input name="name" placeholder="Fund Name" onChange={handleChange} />
@@ -79,7 +79,7 @@ export default function FundWizard() {
             <input name="target_sectors" placeholder="Target Sectors" onChange={handleChange} />
         </div>
 
-        {/* Financial Terms */}
+        {/* Financial Terms yay*/}
         <div className="fund-section">
             <h4>Financial Terms</h4>
             <input name="management_fee" placeholder="Management Fee (%)" onChange={handleChange} />
@@ -91,7 +91,7 @@ export default function FundWizard() {
             <input name="admin_fee_percent" placeholder="Admin Fee (%)" onChange={handleChange} />
         </div>
 
-        {/* Legal & Compliance */}
+        {/* Legal and Compliance double yay*/}
         <div className="fund-section">
             <h4>Legal & Compliance</h4>
             <select name="exemption" onChange={handleChange} defaultValue="506(b)">
