@@ -52,3 +52,15 @@ def generate_sub(fund) -> str:
         "carry": fund.carry
     }
     return render_legal_doc("sub_template.md", fund_data)
+
+
+def generate_form_d_preview(fund):
+    return {
+        "issuer_name": fund.name,
+        "jurisdiction": fund.jurisdiction,
+        "offering_type": fund.type.value,
+        "total_raise": fund.total_raise,
+        "min_investment": fund.min_investment,
+        "exemption": fund.exemption,
+        "manager_contact_email": fund.manager_contact_email
+    }
