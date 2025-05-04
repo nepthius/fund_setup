@@ -1,29 +1,35 @@
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background: white;
-    margin: 0;
-    padding: 0;
-    color: #111;
+.fund-container {
+    padding: 40px 24px;
+    max-width: 600px;
+    margin: 0 auto;
   }
   
-  h2 {
+  .fund-title {
     font-family: 'Georgia', serif;
     font-weight: 500;
     font-size: 32px;
     margin-bottom: 16px;
   }
   
-  input, select {
+  .fund-subtext {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+  
+  .fund-form input,
+  .fund-form select {
     padding: 12px;
     width: 100%;
-    max-width: 400px;
+    max-width: 100%;
     margin: 8px 0;
     font-size: 16px;
     border: 1px solid #ddd;
     border-radius: 8px;
+    box-sizing: border-box;
   }
   
-  button {
+  .fund-button {
     background-color: #000;
     color: #fff;
     border: none;
@@ -35,7 +41,11 @@ body {
     cursor: pointer;
   }
   
-  button:hover {
+  .fund-button:hover {
     background-color: #222;
+  }
+  
+  .fund-result {
+    margin-top: 24px;
   }
   
