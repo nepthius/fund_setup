@@ -49,3 +49,21 @@
     margin-top: 24px;
   }
   
+  .fund-section {
+    margin-bottom: 32px;
+  }
+  
+  .fund-section h4 {
+    font-family: 'Georgia', serif;
+    font-size: 20px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 4px;
+  }
+  .fund-form label {
+    display: block;
+    margin-top: 12px;
+    font-weight: 500;
+  }
+  
+  

@@ -14,11 +14,8 @@ def get_fund(db:Session, fund_name: str) -> Fund:
     return db.query(Fund).filter(Fund.name == fund_name).first()
 
 def get_funds(db:Session) -> list[Fund]:
-    res = db.query(Fund.name).all()
-    ret = []
-    for val in res:
-        ret.append(val[0])
-    return ret
+    return db.query(Fund).all()
+    
 
 def generate_ppm(fund) -> str:
     fund_data = {

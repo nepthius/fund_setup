@@ -2,9 +2,12 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.schemas.fund import FundCreate, FundOut
 from app.services.fund import create_fund, get_fund, generate_ppm, get_funds, generate_lpa, generate_sub, generate_form_d_preview
+from app.services.docgen import render_legal_doc
 from app.db.session import get_db
 from app.services.blue_sky import generate_blue_sky_state_summary
-from fastapi.responses import PlainTextResponse
+from fastapi.responses import PlainTextResponse, StreamingResponse
+from io import BytesIO
+
 
 router = APIRouter()
 
@@ -20,11 +23,12 @@ def find_fund(fund_name:str, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Fund not found")
     return fund
 
-@router.get("/funds", response_model=list[str])
+@router.get("/funds", response_model=list[FundOut])
 def grab_all_funds(db: Session = Depends(get_db)):
     funds = get_funds(db)
     return funds
 
+'''
 #doc generations
 @router.get("/funds/{fund_name}/generate/ppm", response_class = PlainTextResponse)
 def generate_ppm_doc(fund_name: str, db: Session = Depends(get_db)):
@@ -43,6 +47,31 @@ def generate_sub_doc(fund_name: str, db: Session = Depends(get_db)):
     fund = get_fund(db, fund_name)
     sub = generate_sub(fund)
     return sub
+'''
+
+@router.get("/funds/{fund_name}/generate/{doc_type}", response_class=StreamingResponse)
+def generate_doc_pdf(fund_name: str, doc_type: str, db: Session = Depends(get_db)):
+    fund = get_fund(db, fund_name)
+    if not fund:
+        raise HTTPException(status_code=404, detail="Fund not found")
+
+    template_map = {
+        "ppm": "ppm_template.md",
+        "lpa": "lpa_template.md",
+        "sub": "sub_template.md"
+    }
+
+    if doc_type not in template_map:
+        raise HTTPException(status_code=400, detail="Invalid document type.")
+
+    pdf_bytes = render_legal_doc(template_map[doc_type], fund)
+    buffer = BytesIO(pdf_bytes)
+    filename = f"{fund.name}_{doc_type}.pdf"
+
+    return StreamingResponse(buffer, media_type="application/pdf", headers={
+        "Content-Disposition": f"attachment; filename={filename}"
+    })
+
 
 @router.get("/funds/{fund_name}/generate/form_d")
 def generate_form_d_doc(fund_name: str, db: Session = Depends(get_db)):

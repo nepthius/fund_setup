@@ -1,6 +1,6 @@
 # Subscription Agreement
 
-This Subscription Agreement (this “Agreement”) is made and entered into by the undersigned investor and {{ fund.name }}, a {{ fund.jurisdiction }} {{ fund.type }} fund.
+This Subscription Agreement (this “Agreement”) is made and entered into by the undersigned investor and {{ fund.name }}, a {{ fund.jurisdiction }} {{ fund.type.value }} fund.
 
 ---
 

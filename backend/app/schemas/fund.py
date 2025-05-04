@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from typing import Optional
+from datetime import date
 import enum
 
 class FundType(str, enum.Enum):
@@ -26,20 +27,19 @@ class FundCreate(BaseModel):
     min_investment: Optional[float]
     exemption: Optional[ExemptionType]
     manager_contact_email: Optional[str]
+    term_years: Optional[int] = 7
+    subscription_deadline: Optional[date]
+    capital_call_notice_days: Optional[int] = 10
+    preferred_return: Optional[float]
+    org_expense_cap: Optional[float] = 100000.0
+    admin_fee_percent: Optional[float]
+    initial_close_date: Optional[date]
+    asset_focus: Optional[str] = "private equity"
+    target_sectors: Optional[str]
 
 #what the fund creation returns, and orm_mode just means to read like fund.id and not fund["id"]
 class FundOut(FundCreate):
-    name:str
-    type:FundType
-    manager: str
-    management_fee: float
-    carry: float
-    jurisdiction: Optional[str]
-    total_raise: Optional[float]
-    min_investment: Optional[float]
-    exemption: Optional[ExemptionType]
-    manager_contact_email: Optional[str]
+    model_config = {
+        "from_attributes": True
+    }
     #right now it's basically the same as the fund type minus the id, but later on if there's confidential info, I'm leaving it for masking 
-
-    class Config:
-        orm_mode = True
