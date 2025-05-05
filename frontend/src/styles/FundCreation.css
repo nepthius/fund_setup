@@ -1,0 +1,69 @@
+.fund-container {
+    padding: 40px 24px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .fund-title {
+    font-family: 'Georgia', serif;
+    font-weight: 500;
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+  
+  .fund-subtext {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+  
+  .fund-form input,
+  .fund-form select {
+    padding: 12px;
+    width: 100%;
+    max-width: 100%;
+    margin: 8px 0;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+  }
+  
+  .fund-button {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 8px;
+    margin-top: 12px;
+    cursor: pointer;
+  }
+  
+  .fund-button:hover {
+    background-color: #222;
+  }
+  
+  .fund-result {
+    margin-top: 24px;
+  }
+  
+  .fund-section {
+    margin-bottom: 32px;
+  }
+  
+  .fund-section h4 {
+    font-family: 'Georgia', serif;
+    font-size: 20px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 4px;
+  }
+  .fund-form label {
+    display: block;
+    margin-top: 12px;
+    font-weight: 500;
+  }
+  
+  

@@ -14,11 +14,8 @@ def get_fund(db:Session, fund_name: str) -> Fund:
     return db.query(Fund).filter(Fund.name == fund_name).first()
 
 def get_funds(db:Session) -> list[Fund]:
-    res = db.query(Fund.name).all()
-    ret = []
-    for val in res:
-        ret.append(val[0])
-    return ret
+    return db.query(Fund).all()
+    
 
 def generate_ppm(fund) -> str:
     fund_data = {
@@ -52,3 +49,15 @@ def generate_sub(fund) -> str:
         "carry": fund.carry
     }
     return render_legal_doc("sub_template.md", fund_data)
+
+
+def generate_form_d_preview(fund):
+    return {
+        "issuer_name": fund.name,
+        "jurisdiction": fund.jurisdiction,
+        "offering_type": fund.type.value,
+        "total_raise": fund.total_raise,
+        "min_investment": fund.min_investment,
+        "exemption": fund.exemption,
+        "manager_contact_email": fund.manager_contact_email
+    }
