@@ -7,6 +7,8 @@ from app.db.session import get_db
 from app.services.blue_sky import generate_blue_sky_state_summary
 from fastapi.responses import PlainTextResponse, StreamingResponse
 from io import BytesIO
+from typing import List
+
 
 
 router = APIRouter()
@@ -15,6 +17,10 @@ router = APIRouter()
 @router.post("/funds", response_model = FundOut)
 def create_fund_route(fund: FundCreate, db:Session = Depends(get_db)):
     return create_fund(db, fund)
+
+@router.post("/funds/more", response_model=List[FundOut])
+def create_funds_route_more(funds: List[FundCreate], db: Session = Depends(get_db)):
+    return [create_fund(db, fund) for fund in funds]
 
 @router.get("/funds/{fund_name}", response_model = FundOut)
 def find_fund(fund_name:str, db: Session = Depends(get_db)):

@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.api import fund, investor
+from app.api import fund, investor, chat
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -15,3 +15,4 @@ app.add_middleware(
 
 app.include_router(fund.router, prefix="/api", tags=["funds"]) #<- adds all the "fun"d stuff 
 app.include_router(investor.router, prefix="/api", tags=["investors"])
+app.include_router(chat.router, prefix="/api", tags=["chat"])

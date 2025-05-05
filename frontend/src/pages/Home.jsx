@@ -29,6 +29,14 @@ export default function Home() {
           </p>
           <span>Go to Docs Dashboard →</span>
         </div>
+
+        <div className="home-card" onClick={() => navigate('/chat')}>
+          <h2>Legal Llama Index</h2>
+          <p>
+            Trained on the database dynamically, ask any questions you have about legal aspects of the fund.
+          </p>
+          <span>Go to Legal Llama Index →</span>
+        </div>
       </div>
     </div>
   );
